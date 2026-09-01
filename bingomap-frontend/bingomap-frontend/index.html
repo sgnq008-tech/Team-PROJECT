@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BinGo Map — 길 위의 쓰레기통, 가장 가까운 한 입</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="navbar">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="8" fill="#1F6F5C"/><path d="M11 12h10l-1 12a2 2 0 0 1-2 1.9h-4a2 2 0 0 1-2-1.9L11 12z" fill="#fff"/><path d="M13 12v-2a3 3 0 0 1 6 0v2" stroke="#fff" stroke-width="1.6"/><circle cx="21.5" cy="10" r="4.2" fill="#E07C33"/><path d="M20 10.3l1 1 1.8-2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      BinGo Map
+    </div>
+    <nav class="links">
+      <a href="#map-feature">지도</a>
+      <a href="#food-feature">맛집 동선</a>
+      <a href="#community-feature">커뮤니티</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="btn btn-ghost btn-sm" id="loginNavBtn">로그인</button>
+      <a href="#map-feature" class="btn btn-primary btn-sm">지도 열기</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow-tag">🇯🇵 일본 여행자를 위한 위치 서비스</span>
+        <h1 class="hero-title">쓰레기통이 없어서<br>포기했던 <span class="accent">한 입</span>,<br>이제 지도로 찾아요.</h1>
+        <p class="hero-sub">타코야끼 한 봉지를 들고 골목을 헤맨 적 있나요? BinGo Map은 내 주변 쓰레기통과, 그 동선 위에 있는 테이크아웃 맛집을 함께 안내합니다.</p>
+        <div class="hero-cta">
+          <a href="#map-feature" class="btn btn-primary">내 주변 쓰레기통 찾기</a>
+          <a href="#food-feature" class="btn btn-ghost">맛집 동선 보기</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><b class="mono">21.9%</b><span>외국인 관광객 최다 불편 사유</span></div>
+          <div class="stat"><b class="mono">500m</b><span>맛집 반경 쓰레기통 매칭 기준</span></div>
+          <div class="stat"><b class="mono">1995</b><span>공공 쓰레기통 대거 철거 시점</span></div>
+        </div>
+      </div>
+
+      <div class="hero-map-card" aria-hidden="true">
+        <div class="hero-map-top">
+          <span class="title">BinGo Map</span>
+          <span class="status"><span class="pulse"></span> 현위치 인식됨 · 신주쿠 3초메</span>
+        </div>
+        <div class="hero-map-canvas">
+          <svg viewBox="0 0 560 400" width="100%" height="100%">
+            <rect width="560" height="400" fill="#EAF1EE"/>
+            <rect x="0" y="80" width="560" height="24" fill="#DCE6E1"/>
+            <rect x="0" y="230" width="560" height="18" fill="#DCE6E1"/>
+            <rect x="130" y="0" width="20" height="400" fill="#DCE6E1"/>
+            <rect x="360" y="0" width="16" height="400" fill="#DCE6E1"/>
+            <circle cx="270" cy="210" r="9" fill="#1F6F5C"/>
+            <circle cx="270" cy="210" r="16" fill="none" stroke="#1F6F5C" stroke-width="2" opacity="0.4"/>
+            <g><circle cx="190" cy="150" r="9" fill="#123D33"/><circle cx="190" cy="150" r="3" fill="#fff"/></g>
+            <g><circle cx="380" cy="130" r="9" fill="#E07C33"/><text x="380" y="134" font-size="10" fill="#fff" text-anchor="middle">食</text></g>
+            <g><circle cx="160" cy="280" r="9" fill="#123D33"/><circle cx="160" cy="280" r="3" fill="#fff"/></g>
+            <line x1="270" y1="210" x2="380" y2="130" stroke="#E07C33" stroke-width="2" stroke-dasharray="5 5"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="problem">
+    <div class="wrap">
+      <div>
+        <h2>거리엔 자판기도, 편의점도 많은데<br>정작 버릴 곳은 없습니다.</h2>
+        <p>1995년 사건 이후 도심 공공 쓰레기통이 대거 사라지면서, 방일 관광객들은 테이크아웃 음식을 다 먹고도 한참을 걸어야 했습니다. BinGo Map은 그 동선 자체를 다시 설계합니다.</p>
+      </div>
+      <div class="problem-figure">
+        <div class="big mono">1위</div>
+        <div class="cap">일본 관광청 조사, 외국인 관광객 방일 중<br>가장 큰 불편 사항</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP FEATURE -->
+  <section id="map-feature">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">FEATURE 01 · 실시간 위치 기반 지도</p>
+        <h2 class="section-title">내 현위치 중심으로, 가장 가까운 쓰레기통부터</h2>
+        <p class="section-desc">공공 쓰레기통·편의점·자판기 수거함을 유형별로 필터링하고, 마커를 눌러 거리와 경로를 확인해 보세요. (시연용 샘플 데이터)</p>
+      </div>
+
+      <div class="map-shell">
+        <div class="map-toolbar">
+          <div class="chip-group" id="filterChips">
+            <button class="chip active" data-filter="all">전체 보기</button>
+            <button class="chip" data-filter="public"><span class="dot" style="background:#123D33"></span>공공 쓰레기통</button>
+            <button class="chip" data-filter="conv"><span class="dot" style="background:#123D33"></span>편의점</button>
+            <button class="chip" data-filter="food"><span class="dot" style="background:#E07C33"></span>테이크아웃 맛집</button>
+          </div>
+          <div class="locate"><span class="pulse"></span> 현위치 인식됨 · 신주쿠 3초메</div>
+        </div>
+
+        <div class="map-body">
+          <div class="map-canvas-wrap">
+            <svg viewBox="0 0 640 480" id="mapSvg">
+              <rect width="640" height="480" fill="#EAF1EE"/>
+              <rect x="0" y="70" width="640" height="34" fill="#DCE6E1"/>
+              <rect x="0" y="230" width="640" height="26" fill="#DCE6E1"/>
+              <rect x="0" y="390" width="640" height="20" fill="#DCE6E1"/>
+              <rect x="120" y="0" width="26" height="480" fill="#DCE6E1"/>
+              <rect x="330" y="0" width="20" height="480" fill="#DCE6E1"/>
+              <rect x="500" y="0" width="30" height="480" fill="#DCE6E1"/>
+              <rect x="60" y="120" width="46" height="80" fill="#DFE9E4"/>
+              <rect x="380" y="270" width="90" height="60" fill="#DFE9E4"/>
+              <rect x="160" y="290" width="60" height="70" fill="#DFE9E4"/>
+
+              <circle cx="320" cy="240" r="11" fill="#1F6F5C"/>
+              <circle class="loc-ring" cx="320" cy="240" r="20" fill="none" stroke="#1F6F5C" stroke-width="2" opacity="0.35"/>
+              <text x="320" y="270" font-size="11" fill="#4B5D57" text-anchor="middle" font-family="JetBrains Mono, monospace">현위치</text>
+
+              <line id="routeLine" class="route-line" x1="320" y1="240" x2="0" y2="0" stroke="#E07C33" stroke-width="2.4"/>
+
+              <!-- markers injected by JS -->
+              <g id="pinLayer"></g>
+            </svg>
+          </div>
+
+          <div class="map-info">
+            <div class="map-info-empty" id="infoEmpty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4B5D57" stroke-width="1.6"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+              지도 위 마커를 눌러<br>상세 정보를 확인하세요.
+            </div>
+
+            <div class="info-card" id="infoCard">
+              <span class="info-type" id="infoType"></span>
+              <h3 class="info-title" id="infoTitle"></h3>
+              <div class="info-meta" id="infoMeta"></div>
+              <button class="btn btn-ghost btn-sm" id="directionsBtn">도보 경로 안내</button>
+              <div class="info-divider"></div>
+              <div id="infoFoodBlock">
+                <div class="info-food-label">🍢 동선 위 추천 맛집</div>
+                <div class="info-food-name" id="infoFoodName"></div>
+                <div class="info-food-dist" id="infoFoodDist"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="legend-key">
+          <span><span class="dot" style="background:#123D33"></span>공공/편의점 쓰레기통</span>
+          <span><span class="dot" style="background:#E07C33"></span>테이크아웃 맛집</span>
+          <span><span class="dot" style="background:#1F6F5C"></span>내 현위치</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOD FEATURE -->
+  <section id="food-feature">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">FEATURE 02 · 주변 맛집 동선 연계</p>
+        <h2 class="section-title">먹고 나서 어디로 갈지까지, 미리 알려드려요</h2>
+        <p class="section-desc">쓰레기통 반경 500m 이내 테이크아웃 맛집을 카테고리별로 필터링해 보세요. '지도에서 보기'를 누르면 위 지도의 경로가 연결됩니다.</p>
+      </div>
+
+      <div class="chip-group" id="foodChips" style="margin-bottom:24px;">
+        <button class="chip active" data-cat="all">전체</button>
+        <button class="chip" data-cat="타코야끼">타코야끼</button>
+        <button class="chip" data-cat="야끼소바">야끼소바</button>
+        <button class="chip" data-cat="기타">기타 길거리 음식</button>
+      </div>
+
+      <div class="food-grid" id="foodGrid"><!-- injected by JS --></div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY FEATURE -->
+  <section id="community-feature">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="kicker">FEATURE 03 · 커뮤니티 & 마이페이지</p>
+        <h2 class="section-title">내가 제보한 곳, 내가 남긴 리뷰까지 한곳에서</h2>
+        <p class="section-desc">회원가입 없이도 마이페이지 데모를 둘러볼 수 있어요. 즐겨찾기·리뷰·제보내역 탭을 눌러보세요.</p>
+      </div>
+
+      <div class="community-panel">
+        <div class="community-side">
+          <div class="side-user">
+            <div class="side-avatar">민</div>
+            <div class="side-name">민지 님</div>
+            <div class="side-email">minji@bingomap.jp</div>
+          </div>
+          <button class="tab-btn active" data-tab="fav">⭐ 즐겨찾는 장소</button>
+          <button class="tab-btn" data-tab="review">📝 내가 남긴 리뷰</button>
+          <button class="tab-btn" data-tab="report">📍 제보 내역</button>
+        </div>
+
+        <div class="community-main">
+          <div class="tab-pane active" id="tab-fav">
+            <div class="mypage-list">
+              <div class="mypage-row"><div class="row-main"><b>신주쿠 3초메 편의점 수거함</b><span>도보 2분 · 24시간 이용 가능</span></div><span class="badge badge-done">저장됨</span></div>
+              <div class="mypage-row"><div class="row-main"><b>타코야끼 긴타로</b><span>공공 쓰레기통까지 90m</span></div><span class="badge badge-done">저장됨</span></div>
+              <div class="mypage-row"><div class="row-main"><b>가부키초 공원 쓰레기통</b><span>도보 5분 · 분리수거 가능</span></div><span class="badge badge-done">저장됨</span></div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-review">
+            <div class="mypage-list">
+              <div class="mypage-row"><div class="row-main"><b>야끼소바 아저씨네</b><span class="stars">★★★★★</span></div><span class="badge badge-done">게시됨</span></div>
+              <div class="mypage-row"><div class="row-main"><b>신주쿠역 동쪽 출구 수거함</b><span class="stars">★★★★☆</span></div><span class="badge badge-done">게시됨</span></div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-report">
+            <div class="mypage-list">
+              <div class="mypage-row"><div class="row-main"><b>가부키초 자판기 옆 수거함</b><span>위치 정보 누락 제보</span></div><span class="badge badge-pending">검토중</span></div>
+              <div class="mypage-row"><div class="row-main"><b>오모이데요코초 골목 쓰레기통</b><span>철거 확인 제보</span></div><span class="badge badge-done">반영완료</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <div>
+      <div class="brand" style="margin-bottom:8px;">BinGo Map</div>
+      <div class="footer-note">5인 팀 프로젝트 · 프론트엔드 시연용 데모</div>
+    </div>
+    <div class="stack-chips">
+      <span>Google Maps API</span><span>Spring Boot</span><span>Oracle DB 19c</span><span>Jsoup</span>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-backdrop" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <h3>로그인</h3>
+    <p class="sub">BinGo Map 커뮤니티 기능을 이용해 보세요.</p>
+    <form class="login-form" id="loginForm">
+      <input type="email" placeholder="이메일" required>
+      <input type="password" placeholder="비밀번호" required>
+      <button type="submit" class="btn btn-primary" style="justify-content:center;">로그인</button>
+      <div class="form-note">데모용 폼입니다 · 실제 인증은 이뤄지지 않아요.</div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
